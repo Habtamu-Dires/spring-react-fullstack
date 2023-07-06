@@ -15,4 +15,13 @@ public class StudentService {
         return  studentRepository.findAll();
     }
 
+    public void addStudent(Student student) {
+        // check if email is taken
+        studentRepository.save(student);
+    }
+
+    public void deleteStudent(Long studentId) {
+        // check if student exists
+        studentRepository.deleteById(studentId);
+    }
 }
