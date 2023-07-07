@@ -7,11 +7,10 @@ import { Spin, Menu, Layout, Button, Empty, Table, Radio, message,
          Breadcrumb, theme, Badge, Tag, Avatar, Popconfirm} from 'antd';
 
 import StudentDrawerForm from './StudentDrawerForm';
-import { successNotification } from './Notification';
+import { errorNotification, successNotification } from './Notification';
 
 
 const { Header, Content, Footer, Sider } = Layout;
-
 
 
 function getItem(label, key, icon, children) {
@@ -56,7 +55,17 @@ const removeStudent = (id,fetchStudents) =>{
       `Student with id ${id} was deleted`
     )
     fetchStudents()
-  });
+  })
+  .catch(err => {
+    console.log(err.response)
+    err.response.json().then(res => {
+      console.log(res);
+      errorNotification(
+        "There was an issue",
+        `${res.message} [${res.status}] [${res.error}]`
+        );
+    });
+  })
 }
 
 const columns = (fetchStudents) => [
@@ -126,8 +135,17 @@ function App() {
       .then(data => {
         console.log(data);
         setStudents(data);
-        setFetching(false);
-      });
+      })
+      .catch(err => {
+        console.log(err.response)
+        err.response.json().then(res => {
+          console.log(res);
+          errorNotification(
+            "There was an issue",
+            `${res.message} [${res.status}] [${res.error}]`
+            );
+        })
+    }).finally(() => setFetching(false));
 
   useEffect(()=>{
     fetchStudents();
@@ -138,7 +156,20 @@ function App() {
       return <Spin indicator={antIcon} />
     }
     if(students.length <= 0){
-      return <Empty />;
+      return  <>
+          <StudentDrawerForm 
+            setShowDrawer={setShowDrawer}
+            showDrawer={showDrawer}
+            fetchStudents={fetchStudents}
+          />
+          <Button 
+            onClick={() => setShowDrawer(!showDrawer)}
+            type="primary" shape="round" icon={<PlusOutlined />} size={"small"}>
+              Add New Student
+          </Button>
+          <Empty />    
+      </>
+  
     } 
     return <>
       <StudentDrawerForm 

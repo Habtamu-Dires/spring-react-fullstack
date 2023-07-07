@@ -34,3 +34,4 @@ build/
 
 ### node_moduelse ###
 /src/frontend/node_modules
+/src/frontend/node/node_modules/npm/node_modules

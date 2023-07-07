@@ -6,7 +6,6 @@ import {  Button, Col, Spin, Drawer, Form, Input, Row, Select, Space
 import { addNewStudent } from "./client";
 import { successNotification, errorNotification } from "./Notification";
 
-
 const { Option } = Select;
 
 const antIcon = (<LoadingOutlined style={{ fontSize: 24, }} spin /> )
@@ -20,6 +19,7 @@ const StudentDrawerForm = ({showDrawer, setShowDrawer, fetchStudents}) => {
     const onFinish = student => {
         setSubmitting(true);
         console.log(JSON.stringify(student, null, 2));
+
         addNewStudent(student)
         .then(()=> {
             console.log("student added");
@@ -30,7 +30,17 @@ const StudentDrawerForm = ({showDrawer, setShowDrawer, fetchStudents}) => {
             );
             fetchStudents();
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log(err.response)
+          err.response.json().then(res => {
+            console.log(res);
+            errorNotification(
+              "There was an issue",
+              `${res.message} [${res.status}] [${res.error}]`,
+              "bottomLeft"
+              );
+          });
+        })
         .finally(()=> {
             setSubmitting(false)
         });
