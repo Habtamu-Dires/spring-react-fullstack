@@ -4,7 +4,7 @@ import './App.css';
 import {  FileOutlined, PieChartOutlined, UserOutlined, DesktopOutlined,
               TeamOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { Spin, Menu, Layout, Button, Empty, Table, Radio, message, Image,
-         Breadcrumb, theme, Badge, Tag, Avatar, Popconfirm} from 'antd';
+         Breadcrumb, theme, Badge, Tag, Avatar, Popconfirm, Divider} from 'antd';
 
 import StudentDrawerForm from './StudentDrawerForm';
 import { errorNotification, successNotification } from './Notification';
@@ -232,6 +232,12 @@ function App() {
         <Image width={75} 
           src="https://github.com/Habtamu-Dires/spring-react-fullstack/assets/105103306/12fbdcee-cb23-46cd-a886-e45f444eff99"/>
       </Footer>
+      <Divider>
+        <a target='_blank'
+         href='https://www.youtube.com/watch?v=vlMEJkEpajw&list=UULFDO5KQ2KYQ6awyHRAASDHwg'>
+          Click here to access the tutorial 
+        </a>
+      </Divider>
     </Layout>
   </Layout>
   )
