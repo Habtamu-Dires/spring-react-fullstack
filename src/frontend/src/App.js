@@ -3,7 +3,7 @@ import {deleteStudent, getAllStudents} from "./client";
 import './App.css';
 import {  FileOutlined, PieChartOutlined, UserOutlined, DesktopOutlined,
               TeamOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { Spin, Menu, Layout, Button, Empty, Table, Radio, message,
+import { Spin, Menu, Layout, Button, Empty, Table, Radio, message, Image,
          Breadcrumb, theme, Badge, Tag, Avatar, Popconfirm} from 'antd';
 
 import StudentDrawerForm from './StudentDrawerForm';
@@ -229,7 +229,8 @@ function App() {
 
       </Content>
       <Footer style={{ textAlign: 'center',}} >
-        By amigoscode
+        <Image width={75} 
+          src="https://github.com/Habtamu-Dires/spring-react-fullstack/assets/105103306/12fbdcee-cb23-46cd-a886-e45f444eff99"/>
       </Footer>
     </Layout>
   </Layout>
