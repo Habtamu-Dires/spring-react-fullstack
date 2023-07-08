@@ -43,4 +43,4 @@ jobs:
           cd ../..
       -   name: Maven Clean Package
           run:  |
-            ./mvnw --no-transfer-progress clean package -P build-frontend
+            ./mvnw -X --no-transfer-progress clean package -P build-frontend
