@@ -32,15 +32,6 @@ jobs:
           with:
             java-version: ${{ env.JAVA_VERSION }}
             distribution: 'adopt'
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 18
-      - name: Install frontend dependencies
-        run: |
-          cd src/frontend
-          npm install
-          cd ../..
       -   name: Maven Clean Package
           run:  |
             ./mvnw --no-transfer-progress clean package -P build-frontend
